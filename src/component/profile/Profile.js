@@ -1,5 +1,6 @@
 import React from 'react';
 import css from './Profile.module.css';
+import PropTypes from 'prop-types';
 
 const Profile = ({ user }) => {
   const {
@@ -37,3 +38,19 @@ const Profile = ({ user }) => {
 };
 
 export default Profile;
+
+Profile.defaultProps = {
+  name: 'there will be a name',
+  tag: 'email',
+  avatar: 'https://pngimage.net/wp-content/uploads/2018/05/default-png-1.png',
+  location: 'https://www.google.com/maps/@50.445171,30.551957,14z?hl=ru',
+};
+
+Profile.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    tag: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+  }),
+};
