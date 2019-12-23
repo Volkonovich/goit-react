@@ -1,6 +1,7 @@
 import React from 'react';
 import css from '../Transaction.module.css';
 import PropTypes from 'prop-types';
+
 const List = ({ items }) => {
   return items.map(({ id, type, amount, currency }) => (
     <tr key={id}>
