@@ -1,8 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
+import Phonebook from "./Phonebook/Phonebook";
+import Gallery from "./Gallery/Gallary";
+// import css from "../component/Styles/styls.css";
 
-import "./App.css";
-
-const App = () => {
-  return <div className="App">{/* <Phonebook /> */}</div>;
-};
-export default App;
+export default class App extends Component {
+  state = {};
+  render() {
+    return (
+      <div>
+        <Gallery />
+        {/* <Phonebook /> */}
+      </div>
+    );
+  }
+}
