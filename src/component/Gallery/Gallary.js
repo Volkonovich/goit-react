@@ -67,6 +67,22 @@ export default class Gallary extends Component {
     this.getData();
   };
 
+  close = () => {
+    this.setState({ isModalOpen: false });
+  };
+
+  handleKeyPress = event => {
+    // console.log("event", event);
+    if (event.code === "Escape") {
+      this.close();
+    }
+  };
+  handleBackdropClick = event => {
+    if (Number(event.target.id) === Number(this.state.object.id)) {
+      this.close();
+    }
+  };
+
   render() {
     console.log("this.state.dataApi", this.state.dataApi);
     const { isLoading } = this.state;
@@ -80,6 +96,8 @@ export default class Gallary extends Component {
         />
 
         <ImageGallery
+          handleKeyPress={this.handleKeyPress}
+          handleBackdropClick={this.handleBackdropClick}
           object={this.state.object}
           images={this.state.dataApi}
           openModal={this.openModal}

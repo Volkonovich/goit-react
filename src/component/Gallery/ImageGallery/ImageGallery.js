@@ -2,10 +2,25 @@ import React from "react";
 import css from "../../Styles/styls.css";
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 import Modal from "../Modal/Modal";
-const ImageGallery = ({ images, openModal, isModalOpen, id, object }) => {
+const ImageGallery = ({
+  images,
+  openModal,
+  isModalOpen,
+  id,
+  object,
+  handleKeyPress,
+  handleBackdropClick
+}) => {
   return (
     <>
-      {isModalOpen && <Modal id={id} object={object} />}
+      {isModalOpen && (
+        <Modal
+          id={id}
+          object={object}
+          handleKeyPress={handleKeyPress}
+          handleBackdropClick={handleBackdropClick}
+        />
+      )}
       <ul className={css.ImageGallery}>
         {images.map(item => (
           <ImageGalleryItem
