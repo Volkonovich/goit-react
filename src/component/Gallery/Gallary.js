@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Searchbar from "./Searchbar/Searchbar";
 import ImageGallery from "./ImageGallery/ImageGallery";
-import ImageGalleryItem from "./ImageGalleryItem/ImageGalleryItem";
 import css from "./../Styles/styls.css";
 import Button from "./Button/Button";
+import Loader from "react-loader-spinner";
 import axios from "axios";
 
 const api_key = "14452774-766286a273532ef73a45b39e7";
@@ -15,11 +15,23 @@ export default class Gallary extends Component {
     id: null,
     object: {},
     search: "",
-    page: 1
+    page: 1,
+    isLoading: false
   };
-  // componentDidMount() {
-  //
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.search !== this.state.search ||
+      prevState.page !== this.state.page
+    ) {
+      if (prevState.search !== this.state.search) {
+        this.setState({ dataApi: [], page: 1 });
+      }
+    }
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth"
+    });
+  }
 
   openModal = e => {
     console.log("e.target.id", e.target.id);
@@ -30,17 +42,22 @@ export default class Gallary extends Component {
     this.setState({ search: e.target.value });
   };
   getData = () => {
+    this.setState({
+      isLoading: true
+    });
     axios
       .get(
         `https://pixabay.com/api/?q=${this.state.search}&page=${this.state.page}&key=${api_key}&image_type=photo&orientation=horizontal&per_page=12`
       )
       .then(data => {
         this.setState(state => ({
-          dataApi: data.data.hits,
-          page: state.page + 1
+          page: state.page + 1,
+          dataApi: [...state.dataApi, ...data.data.hits]
         }));
-      });
+      })
+      .finally(() => this.setState({ isLoading: false }));
   };
+
   handleSubmit = e => {
     e.preventDefault();
     this.getData();
@@ -48,15 +65,12 @@ export default class Gallary extends Component {
 
   handleLoad = e => {
     this.getData();
-    const newImages = this.state.dataApi;
-    this.setState(state => ({
-      page: state.page + 1,
-      dataApi: [...state.dataApi, ...newImages]
-    }));
   };
 
   render() {
     console.log("this.state.dataApi", this.state.dataApi);
+    const { isLoading } = this.state;
+
     return (
       <div className={css.App}>
         <Searchbar
@@ -72,6 +86,15 @@ export default class Gallary extends Component {
           isModalOpen={this.state.isModalOpen}
           id={this.state.id}
         />
+        {isLoading && (
+          <Loader
+            type="ThreeDots"
+            color="#3f51b5"
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+          />
+        )}
         <Button handleLoad={this.handleLoad} />
       </div>
     );
