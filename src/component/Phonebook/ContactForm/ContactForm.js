@@ -44,7 +44,7 @@ export default class ContactForm extends Component {
       return;
     }
     this.setState({
-      name: name
+      name
     });
   };
 

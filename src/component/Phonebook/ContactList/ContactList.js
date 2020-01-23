@@ -4,16 +4,17 @@ import shortid from "shortid";
 const ContactList = ({ contacts = [], deleteContacts }) => {
   return (
     <>
-      {contacts.map(item => (
-        <div key={shortid()}>
-          {console.log("object", item)}
-          <p>{item.name}</p>
-          <p>{item.number}</p>
-          <button type="button" onClick={() => deleteContacts(item.id)}>
-            Delete
-          </button>
-        </div>
-      ))}
+      {contacts.length !== 0 &&
+        contacts.map(item => (
+          <div key={shortid()}>
+            {console.log("object", item)}
+            <p>{item.name}</p>
+            <p>{item.number}</p>
+            <button type="button" onClick={() => deleteContacts(item.id)}>
+              Delete
+            </button>
+          </div>
+        ))}
     </>
   );
 };
