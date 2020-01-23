@@ -9,7 +9,7 @@ export default class App extends Component {
     return (
       <div>
         <Gallery />
-        {/* <Phonebook /> */}
+        <Phonebook />
       </div>
     );
   }
