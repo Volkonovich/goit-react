@@ -19,7 +19,11 @@ export default class ContactForm extends Component {
   };
 
   componentDidMount() {
-    const [local] = JSON.parse(localStorage.getItem("contacts"));
+    const [local] =
+      localStorage.getItem("contacts") !== null
+        ? JSON.parse(localStorage.getItem("contacts"))
+        : [];
+    console.log("local", local);
     // localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     this.setState(prevState => {
       return {
