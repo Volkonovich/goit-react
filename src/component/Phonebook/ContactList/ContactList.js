@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import shortid from "shortid";
 const ContactList = ({ contacts = [], deleteContacts }) => {
   return (
     <>
-      {contacts.map((item, indx) => (
-        <div key={indx}>
+      {contacts.map(item => (
+        <div key={shortid()}>
           {console.log("object", item)}
           <p>{item.name}</p>
           <p>{item.number}</p>
@@ -18,10 +19,10 @@ const ContactList = ({ contacts = [], deleteContacts }) => {
 };
 export default ContactList;
 
-// ContactList.propTypes = {
-//   contact: PropTypes.arrayOf(PropTypes.object),
-//   id: PropTypes.string,
-//   number: PropTypes.string,
-//   name: PropTypes.string,
-//   deleteContacts: PropTypes.func
-// };
+ContactList.propTypes = {
+  contact: PropTypes.arrayOf(PropTypes.object),
+  id: PropTypes.string,
+  number: PropTypes.string,
+  name: PropTypes.string,
+  deleteContacts: PropTypes.func
+};
