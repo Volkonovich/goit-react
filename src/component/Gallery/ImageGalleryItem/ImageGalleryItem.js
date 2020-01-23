@@ -1,13 +1,12 @@
 import React from "react";
-import css from "../../Styles/styls.css";
 const ImageGalleryItem = ({ src, id, openModal }) => (
-  <li className={css.ImageGalleryItem}>
+  <li className="ImageGalleryItem">
     <img
       onClick={openModal}
       src={src}
       id={id}
       alt="der"
-      className={css.ImageGalleryItemImage}
+      className="ImageGalleryItemImage"
     />
   </li>
 );

@@ -1,5 +1,5 @@
 import React from "react";
-import css from "../../Styles/styls.css";
+import "../../Styles/styls.css";
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 import Modal from "../Modal/Modal";
 const ImageGallery = ({
@@ -21,7 +21,7 @@ const ImageGallery = ({
           handleBackdropClick={handleBackdropClick}
         />
       )}
-      <ul className={css.ImageGallery}>
+      <ul className="ImageGallery">
         {images.map(item => (
           <ImageGalleryItem
             key={item.id}

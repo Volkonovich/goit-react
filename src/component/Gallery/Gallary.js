@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Searchbar from "./Searchbar/Searchbar";
 import ImageGallery from "./ImageGallery/ImageGallery";
-import css from "./../Styles/styls.css";
 import Button from "./Button/Button";
 import Loader from "react-loader-spinner";
 import axios from "axios";
@@ -88,7 +87,7 @@ export default class Gallary extends Component {
     const { isLoading } = this.state;
 
     return (
-      <div className={css.App}>
+      <div className="App">
         <Searchbar
           search={this.state.search}
           getSearchValue={this.getSearchValue}
