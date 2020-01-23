@@ -34,7 +34,7 @@ export default class Gallary extends Component {
 
   openModal = e => {
     console.log("e.target.id", e.target.id);
-    const [object] = this.state.dataApi.filter(item => item.id == e.target.id);
+    const [object] = this.state.dataApi.filter(item => item.id === e.target.id);
     this.setState({ isModalOpen: true, id: e.target.id, object: object });
   };
   getSearchValue = e => {
