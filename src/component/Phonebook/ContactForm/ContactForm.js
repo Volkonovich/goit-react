@@ -18,25 +18,25 @@ export default class ContactForm extends Component {
     searchValue: ""
   };
 
-  componentDidMount() {
-    const [local] =
-      localStorage.getItem("contacts") !== null
-        ? JSON.parse(localStorage.getItem("contacts"))
-        : [];
-    console.log("local", local);
-    // localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-    this.setState(prevState => {
-      return {
-        contacts: [...prevState.contacts, local]
-      };
-    });
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.contacts.length !== this.state.contacts.length) {
-      console.log(prevState.contacts.length, this.state.contacts.length);
-      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-    }
-  }
+  // componentDidMount() {
+  //   const [local] =
+  //     localStorage.getItem("contacts") !== null
+  //       ? JSON.parse(localStorage.getItem("contacts"))
+  //       : [];
+  //   console.log("local", local);
+  //   localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  //   this.setState(prevState => {
+  //     return {
+  //       contacts: [...prevState.contacts, local]
+  //     };
+  //   });
+  // }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.contacts.length !== this.state.contacts.length) {
+  //     console.log(prevState.contacts.length, this.state.contacts.length);
+  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  //   }
+  // }
 
   handleInputChangeName = event => {
     const name = event.target.value;
