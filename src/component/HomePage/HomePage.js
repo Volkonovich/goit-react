@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import getData from "../../services/services";
+import services from "../../services/services";
 import { Link } from "react-router-dom";
 
 export default class HomePage extends Component {
@@ -12,7 +12,7 @@ export default class HomePage extends Component {
   }
 
   getArray = () => {
-    getData().then(data => {
+    services.getData().then(data => {
       console.log("data", data);
       this.setState({ data: data });
     });
