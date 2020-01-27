@@ -1,7 +1,14 @@
-import React from "react";
-import { Route, Redirect, withRouter, Link, Switch } from "react-router-dom";
-import Cast from "./Cast/Cast";
-import Reviews from "./Reviews/Reviews";
+import React, { Suspense, lazy } from "react";
+import { Route, withRouter, Link, Switch } from "react-router-dom";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+// import Cast from "./Cast/Cast";
+
+// import Reviews from "./Reviews/Reviews";
+
+const Cast = lazy(() => import("./Cast/Cast"));
+
+const Reviews = lazy(() => import("./Reviews/Reviews"));
 
 const MovieDetailsPage = props => {
   const {
@@ -42,17 +49,29 @@ const MovieDetailsPage = props => {
         </Link>
       </div>
       <div>
-        <Switch>
-          <Route
-            path="/movies/:movieId/cast"
-            render={() => <Cast cast={cast} />}
-          />
+        <Suspense
+          fallback={
+            <Loader
+              type="Puff"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              timeout={3000} //3 secs
+            />
+          }
+        >
+          <Switch>
+            <Route
+              path="/movies/:movieId/cast"
+              render={() => <Cast cast={cast} />}
+            />
 
-          <Route
-            path="/movies/:movieId/reviews"
-            render={() => <Reviews reviews={reviews} />}
-          />
-        </Switch>
+            <Route
+              path="/movies/:movieId/reviews"
+              render={() => <Reviews reviews={reviews} />}
+            />
+          </Switch>
+        </Suspense>
       </div>
     </div>
   );
