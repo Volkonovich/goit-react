@@ -13,7 +13,7 @@ class HomePage extends Component {
             <li key={item.id}>
               <Link
                 id={item.id}
-                onClick={this.props.getMovieById}
+                onClick={this.props.getDetails}
                 to={`/movies/${item.id}`}
               >
                 {item.original_title}

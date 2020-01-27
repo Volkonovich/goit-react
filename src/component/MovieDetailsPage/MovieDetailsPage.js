@@ -5,41 +5,53 @@ import Reviews from "./Reviews/Reviews";
 
 const MovieDetailsPage = props => {
   const {
+    original_title,
     poster_path,
-    title,
     popularity,
     overview,
-    genre_ids,
+    genres = [],
     id
   } = props.currentMovie;
-  console.log("props :", props);
+  const { getMovieReviews, getMovieCast, cast, history, reviews } = props;
   return (
     <div>
       <div>
-        <button onClick={() => props.history.push("/")}>back to</button>
+        <button onClick={() => history.push("/")}>back to</button>
         <img
           src={`https://image.tmdb.org/t/p/w300${poster_path}`}
-          alt={title}
+          alt={original_title}
         />
-        <h2>{title}</h2>
+        <h2>{original_title}</h2>
         <p>{popularity}</p>
         <h3>overview</h3>
         <p>{overview}</p>
         <h3>genres</h3>
-        <p>{genre_ids}</p>
+        <ul>
+          {genres.map(elem => (
+            <li key={elem.id}>{elem.name}</li>
+          ))}
+        </ul>
       </div>
       <div>
-        <Link onClick={props.getMovieCast} to="/movies/:movieId/cast">
+        <Link onClick={getMovieCast} to="/movies/:movieId/cast">
           Cast
         </Link>
         <br />
-        <Link to="/movies/:movieId/reviews">Reviews</Link>
+        <Link onClick={getMovieReviews} to="/movies/:movieId/reviews">
+          Reviews
+        </Link>
       </div>
       <div>
         <Switch>
-          <Route path="/movies/:movieId/cast" component={Cast} />
+          <Route
+            path="/movies/:movieId/cast"
+            render={() => <Cast cast={cast} />}
+          />
 
-          <Route path="/movies/:movieId/reviews" component={Reviews} />
+          <Route
+            path="/movies/:movieId/reviews"
+            render={() => <Reviews reviews={reviews} />}
+          />
         </Switch>
       </div>
     </div>
