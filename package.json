@@ -17,6 +17,7 @@
     "react-scripts": "3.3.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -38,5 +39,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://github.com/Volkonovich/goit-react/"
+  "homepage": "https://github.com/Volkonovich/goit-react/ghjgghhgj"
 }
